@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Lost & Found — Register Item</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-800 to-indigo-900 min-h-screen text-white p-6">
+  <div class="max-w-2xl mx-auto bg-white/10 p-6 rounded-2xl shadow-xl">
+    <h1 class="text-3xl font-bold mb-4">Register Lost Item</h1>
+    <form action="{{ url_for('register') }}" method="post" class="space-y-4">
+      <div>
+        <label class="block text-sm">Item name</label>
+        <input name="name" class="w-full rounded p-2 text-black" placeholder="e.g., Black Wallet" required>
+      </div>
+      <div>
+        <label class="block text-sm">Your contact (owner)</label>
+        <input name="contact" class="w-full rounded p-2 text-black" placeholder="phone / email" required>
+      </div>
+      <div>
+        <label class="block text-sm">Description</label>
+        <textarea name="description" class="w-full rounded p-2 text-black" placeholder="Any details..."></textarea>
+      </div>
+
+      <div class="flex gap-2">
+        <button type="submit" class="px-4 py-2 bg-purple-600 rounded">Register & generate QR</button>
+        <a href="/" class="px-4 py-2 bg-gray-600 rounded">Reset</a>
+      </div>
+    </form>
+
+    <p class="mt-4 text-sm text-gray-200">Demo flow: register item → download QR → attach to item (print or save) → finder scans QR → fills finder form.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Found an item</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-900 to-indigo-800 min-h-screen text-white p-6">
+  <div class="max-w-2xl mx-auto bg-white/10 p-6 rounded-2xl shadow-xl">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-4 p-3 bg-green-700/60 rounded">
+          {% for m in messages %} <div>{{ m }}</div> {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <h1 class="text-2xl font-bold mb-2">Found Item — {{ item.name }}</h1>
+    <p class="mb-3"><strong>Description:</strong> {{ item.description }}</p>
+
+    <h2 class="text-lg font-semibold mt-4">Contact the owner</h2>
+    <form action="{{ url_for('contact_owner', item_id=item.id) }}" method="post" class="space-y-3 mt-2">
+      <div>
+        <label class="block text-sm">Your name</label>
+        <input name="finder_name" class="w-full rounded p-2 text-black" required>
+      </div>
+      <div>
+        <label class="block text-sm">Your contact (phone/email)</label>
+        <input name="finder_contact" class="w-full rounded p-2 text-black" required>
+      </div>
+      <div>
+        <label class="block text-sm">Where did you find it?</label>
+        <input name="found_where" class="w-full rounded p-2 text-black" placeholder="e.g., Library floor 2" required>
+      </div>
+      <div>
+        <label class="block text-sm">Message (optional)</label>
+        <textarea name="message" class="w-full rounded p-2 text-black"></textarea>
+      </div>
+
+      <div class="flex gap-2">
+        <button type="submit" class="px-4 py-2 bg-purple-600 rounded">Send to Owner</button>
+      </div>
+    </form>
+
+    <div class="mt-6 text-sm text-gray-200">
+      <p>Owner contact on record: <strong>{{ item.contact }}</strong> (demo — message shown on server console)</p>
+    </div>
+  </div>
+</body>
+</html>
